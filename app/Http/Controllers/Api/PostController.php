@@ -111,7 +111,7 @@ class PostController extends Controller
 
     public function getPosts()
     {
-        $posts = Post::with('categories')->with('media')->latest()->paginate();
+        $posts = Post::with('categories','media')->latest()->paginate();
         return PostResource::collection($posts);
 
     }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
@@ -28,6 +30,15 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('category-list', [CategoryController::class, 'getList']);
     Route::get('/user', [ProfileController::class, 'user']);
     Route::put('/user', [ProfileController::class, 'update']);
+    // exam controller
+    Route::get('/exams', [ExamController::class, 'index']);
+    Route::get('/exams/{id}', [ExamController::class, 'show']);
+    Route::post('/exams/{id}/submit', [ExamController::class, 'submit']);
+
+    // result controller 
+
+    Route::get('/results/{id}', [ResultController::class, 'show']);
+
 
     Route::get('abilities', function(Request $request) {
         return $request->user()->roles()->with('permissions')

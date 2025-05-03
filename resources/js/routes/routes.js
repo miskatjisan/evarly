@@ -41,6 +41,30 @@ export default [
                 name: 'home',
                 component: () => import('../views/home/index.vue'),
             },
+
+
+            // exam
+
+            {
+                path: 'exams',
+                name: 'ExamList',
+                component: () => import('../views/exam/ExamList.vue'),
+            },
+            {
+                path: 'exams/:id',
+                name: 'ExamStart',
+                component: () => import('../views/exam/ExamStart.vue'),
+            },
+
+            {
+                path: 'exam-result',
+                name: 'ExamResult',
+                component: () => import('../views/exam/ExamResult.vue'),
+            },
+
+            
+    // post 
+
             {
                 path: 'posts',
                 name: 'public-posts.index',

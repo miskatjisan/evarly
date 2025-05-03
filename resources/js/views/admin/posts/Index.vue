@@ -59,6 +59,7 @@
                                         </div>
                                     </div>
                                 </th>
+
                                 <th class="px-6 py-3 text-left">
                                     <div class="flex flex-row"
                                          @click="updateOrdering('title')">
@@ -78,18 +79,58 @@
                                         </div>
                                     </div>
                                 </th>
+
                                 <th class="px-6 py-3 text-left">
                                     <div class="flex flex-row">
                                         <div class="font-medium text-uppercase">
-                                            Thumbnail
+                                            Name
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row">
+                                        <div class="font-medium text-uppercase">
+                                            Phone
+                                        </div>
+                                    </div>
+                                </th>
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row">
+                                        <div class="font-medium text-uppercase">
+                                            Email
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row">
+                                        <div class="font-medium text-uppercase">
+                                            Address
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row">
+                                        <div class="font-medium text-uppercase">
+                                            Link
+                                        </div>
+                                    </div>
+                                </th>
+
+                                <th class="px-6 py-3 text-left">
+                                    <div class="flex flex-row">
+                                        <div class="font-medium text-uppercase">
+                                            Screen Short
                                         </div>
                                     </div>
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left">
-                                    <span class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Category</span>
+                                    <span class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Frout Type</span>
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left">
-                                    <span class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Content</span>
+                                    <span class="text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Reason</span>
                                 </th>
                                 <th class="px-6 py-3 bg-gray-50 text-left">
                                     <div class="flex flex-row items-center justify-between cursor-pointer"
@@ -123,6 +164,26 @@
                                 <td class="px-6 py-4 text-sm">
                                     {{ post.title }}
                                 </td>
+                                <td class="px-6 py-4 text-sm">
+                                    {{ post.name }}
+                                </td>
+
+                                <td class="px-6 py-4 text-sm">
+                                    {{ post.phone }}
+                                </td>
+
+                                <td class="px-6 py-4 text-sm">
+                                    {{ post.email }}
+                                </td>
+
+                                <td class="px-6 py-4 text-sm">
+                                    {{ post.address }}
+                                </td>
+
+                                <td class="px-6 py-4 text-sm">
+                                    {{ post.link }}
+                                </td>
+
                                 <td class="px-6 py-4 text-sm">
                                     <img :src="post.original_image" alt="image" height="70">
                                 </td>

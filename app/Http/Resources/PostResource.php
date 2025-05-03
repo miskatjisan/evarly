@@ -24,6 +24,11 @@ class PostResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'email' => $this->email,
+            'address' => $this->address,
+            'link' => $this->link,
             'categories' => $this->categories,
             'content' => $this->content,
             'original_image' => count($this->getMedia('*')) > 0 ? $this->getMedia('*')[0]->getUrl() : null,

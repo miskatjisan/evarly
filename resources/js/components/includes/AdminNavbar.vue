@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg sticky-top flex-md-nowrap shadow-sm" style="background-color: #e3f2fd;">
         <div class="container-fluid">
             <router-link to="/" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 nuxt-link-active mini">
-                <span>CST ECOMMARCE BY JISAN</span>
+                <span>Frout checker BY Miskat JISAN</span>
             </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -17,7 +17,7 @@
                         </router-link>
                     </li> -->
                     <LocaleSwitcher />
-                    <li class="nav-item dropdown">
+                    <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             Hi, {{ user.name }}
@@ -31,7 +31,26 @@
                             <li><a class="dropdown-item" :class="{ 'opacity-25': processing }" :disabled="processing"
                                    href="javascript:void(0)" @click="logout">Logout</a></li>
                         </ul>
-                    </li>
+                    </li> -->
+                
+                    <div class="dropdown-wrapper position-relative" ref="dropdownRef">
+    <button class="btn btn-light dropdown-toggle" @click="toggleDropdown">
+      Hi, {{ user.name }}
+    </button>
+    <ul v-if="isOpen" class="dropdown-menu show position-absolute end-0 mt-2 shadow-sm">
+      <li>
+        <router-link :to="{ name: 'profile.index' }" class="dropdown-item">Profile</router-link>
+      </li>
+      <li><a class="dropdown-item" href="#">Setting</a></li>
+      <li><hr class="dropdown-divider" /></li>
+      <li>
+        <a class="dropdown-item" :class="{ 'opacity-50': processing }" href="javascript:void(0)" @click="logout" :disabled="processing">Logout</a>
+      </li>
+    </ul>
+  </div>
+
+
+                
                 </ul>
             </div>
         </div>
@@ -39,16 +58,43 @@
 </template>
 
 <script setup>
-import {computed} from "vue";
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue';
 import { useStore } from 'vuex';
-import useAuth from "@/composables/auth";
-import LocaleSwitcher from "../../components/LocaleSwitcher.vue";
+import useAuth from '@/composables/auth';
 
-    const store = useStore();
-    const user = computed(() => store.state.auth.user)
-    const {processing, logout} = useAuth();
+const store = useStore();
+const user = computed(() => store.state.auth.user);
+const { logout, processing } = useAuth();
+
+const isOpen = ref(false);
+const dropdownRef = ref(null);
+
+const toggleDropdown = () => {
+  isOpen.value = !isOpen.value;
+};
+
+const handleClickOutside = (event) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+    isOpen.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside);
+});
 </script>
 
 <style scoped>
-
+.dropdown-menu {
+  display: block;
+  min-width: 150px;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0;
+}
 </style>

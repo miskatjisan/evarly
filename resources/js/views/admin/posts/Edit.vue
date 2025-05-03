@@ -4,7 +4,6 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body">
-
                         <!-- Title -->
                         <div class="mb-3">
                             <label for="post-title" class="form-label">
@@ -20,6 +19,49 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <!-- Name -->
+                        <div class="mb-3">
+                            <label for="post-name" class="form-label">
+                                Name
+                            </label>
+                            <input v-model="post.name" id="post-name" type="text" class="form-control">
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="mb-3">
+                            <label for="post-phone" class="form-label">
+                                Phone
+                            </label>
+                            <input v-model="post.phone" id="post-phone" type="tel" class="form-control">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="post-email" class="form-label">
+                                Email
+                            </label>
+                            <input v-model="post.email" id="post-email" type="email" class="form-control">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-3">
+                            <label for="post-address" class="form-label">
+                                Address
+                            </label>
+                            <input v-model="post.address" id="post-address" type="text" class="form-control">
+                        </div>
+
+                        <!-- link -->
+                        <div class="mb-3">
+                            <label for="post-link" class="form-label">
+                                Link
+                            </label>
+                            <textarea v-model="post.link" id="post-link" class="form-control"></textarea>
+                        </div>
+
+
                         <!-- Content -->
                         <div class="mb-3">
                             <label for="post-content" class="form-label">
@@ -61,7 +103,7 @@
                         <h6 class="mt-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-                            </svg> Category
+                            </svg> Frout Type
                         </h6>
                         <!-- Category -->
                         <div class="mb-3">
@@ -123,20 +165,30 @@
 
     // Define a validation schema
     const schema = {
-        title: 'required|min:5',
-        content: 'required|min:50',
+        title: 'required',
+        content: 'required',
         categories: 'required'
     }
     // Create a form context with the validation schema
     const { validate, errors, resetForm } = useForm({ validationSchema: schema })
     // Define actual fields for validation
-    const { value: title } = useField('title', null, { initialValue: '' });
+    const {value: title} = useField('title', null, {initialValue: ''});
+    const {value: name} = useField('name', null, {initialValue: ''});
+    const {value: phone} = useField('phone', null, {initialValue: ''});
+    const {value: email} = useField('email', null, {initialValue: ''});
+    const {value: address} = useField('address', null, {initialValue: ''});
+    const {value: link} = useField('link', null, {initialValue: ''});
     const { value: content } = useField('content', null, { initialValue: '' });
     const { value: categories } = useField('categories', null, { initialValue: '', label: 'category' });
     const { categoryList, getCategoryList } = useCategories()
     const { post: postData, getPost, updatePost, validationErrors, isLoading } = usePosts()
     const post = reactive({
         title,
+        name,
+        phone,
+        email,
+        address,
+        link,
         content,
         categories,
         thumbnail: ''
@@ -153,6 +205,11 @@
     watchEffect(() => {
         post.id = postData.value.id
         post.title = postData.value.title
+        post.name = postData.value.name
+        post.phone = postData.value.phone
+        post.email = postData.value.email
+        post.address = postData.value.address
+        post.link = postData.value.link
         post.content = postData.value.content
         post.thumbnail = postData.value.original_image
         post.categories = postData.value.categories

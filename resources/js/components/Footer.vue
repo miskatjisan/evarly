@@ -2,7 +2,7 @@
     <footer class="footer footer-dark bg-dark">
         <div class="container text-center py-5">
             <p>
-                CST ECOMMARCE MADE BY JISAN
+                Frout Checker Developed BY Miskat JISAN
             </p>
         </div>
     </footer>
